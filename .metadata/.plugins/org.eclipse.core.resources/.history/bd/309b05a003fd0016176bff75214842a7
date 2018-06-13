@@ -1,0 +1,110 @@
+//*****************************************************
+// Nathan Schnitzer
+// PairOfDice.java 4.5
+// 2/7/17
+// This program will be able to play Pig with the given requirements
+//*****************************************************
+
+package Prog4_5;
+
+import java.util.Random;
+
+public class PairOfDice 
+{
+	//Declare variables
+	private final int MIN_FACES = 4;
+	private final int ROUND_LIMIT = 20;
+	private final int END_GAME = 100;
+	private static Random gen = new Random();
+	private int numFaces, roundScore = 0, endScore = 0;
+	private int faceValue;
+	private int lastValue, curValue, count = 0, roll1, roll2;
+	
+	//Create Die with default sides
+	public PairOfDice ()
+	{
+		numFaces = 6;
+		faceValue = 1;
+	}
+	
+	//Create Die object with certain amount of sides
+	public PairOfDice (int faces, PairOfDice comp)
+	{
+		if (faces < MIN_FACES)
+			numFaces = 6;
+		else
+			numFaces = faces;
+		
+		faceValue = 1;
+	}
+	
+	//Roll method
+	public int roll()
+	{
+		faceValue = gen.nextInt(numFaces) + 1;
+		return faceValue;
+	}
+	
+	//Create method that returns the value
+	public int getFaceValue()
+	{
+		return faceValue;
+	}
+	
+	public int pigGame() //Will play Pig
+	{
+		lastValue = curValue;
+		roll1 = roll();
+		roll2 = roll();
+		curValue = roll1 + roll2;
+		roundScore = roundScore + curValue;
+		if (roll1 == 1 || roll2 == 1)
+		{
+			if (roll1 == 1 && roll2 == 1)
+			{
+				System.out.println("Back To Zero");
+				roundScore = 0;
+				endScore = 0;
+			}
+			roundScore = 0;
+			endRound();
+		}
+		
+		if (roundScore >= 20)
+		{
+			endRound();
+			System.out.println("Score Limit reached");
+		}
+		return roundScore;
+	}
+	
+	public void endRound()
+	{
+		roundScore = 0;
+		endScore += roundScore;
+	}
+
+	
+	
+	
+	public String pigCompare(PairOfDice d2) //Will compare the length of the time of the 2 die
+	{
+		int d1Value = pigGame();
+		int d2Value = d2.pigGame();
+		
+		//Compare the length
+		if (d1Value < d2Value)
+		{
+			return "Winner: Dice 1! \t " + d1Value + ":" + d2Value;
+		}
+		else if (d1Value == d2Value)
+		{
+			return "Tie \t " + d1Value + ":" + d2Value;
+		}
+		else
+		{
+			return "Winner: Dice 2! \t " + d1Value + ":" + d2Value;
+		}
+	}
+	
+}

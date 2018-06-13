@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;BinarySearcher.java&apos; to &apos;ACSL/src/(default package)&apos;&#x0D;&#x0A;- Original project: &apos;Recursion&apos;&#x0D;&#x0A;- Destination element: &apos;ACSL/src/(default package)&apos;&#x0D;&#x0A;- Original element: &apos;BinarySearcher.java&apos;" description="Copy compilation unit" destination="=ACSL/src&lt;" element1="/src&lt;{BinarySearcher.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1513274588536" units="1" version="1.0"/>
+</session>

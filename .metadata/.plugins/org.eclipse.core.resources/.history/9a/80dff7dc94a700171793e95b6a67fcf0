@@ -1,0 +1,58 @@
+//************************************************************
+// Nathan Schnitzer
+// StringBuilder3.java
+// 9/26/17
+// This will utilize regular expression
+//************************************************************
+
+public class StringBuilder3 
+{
+	public String stringy;
+	public String pattern;
+	int stringyLength, patternLength;
+	
+	//Constructs a StringBuilder3 object
+	public StringBuilder3(String str, String ptrn)
+	{
+		stringy = str;
+		pattern = ptrn;
+	}
+	
+	public String regularExpression()
+	{
+		int currentStringyPos = 0;
+		String newStringy = "";
+		stringyLength = stringy.length();
+		patternLength = pattern.length();
+		
+		while (currentStringyPos < stringyLength)
+		{
+			int currentPatternPos = 0;
+			while (currentPatternPos < patternLength)
+			{
+				if (stringy.charAt(currentStringyPos + currentPatternPos) != pattern.charAt(currentPatternPos))
+				{
+					currentPatternPos = patternLength * 2;
+				}
+				else
+					currentPatternPos++;
+			}
+			if (currentPatternPos == patternLength- 1)
+			{
+				if (currentStringyPos == 0)
+				{
+					newStringy += stringy.substring(0, patternLength- 1);
+				}
+				else
+				{
+					newStringy = newStringy + stringy.substring(0, currentStringyPos-1) + stringy.substring(currentStringyPos + patternLength);
+				}
+				System.out.println(newStringy);
+			}
+			currentStringyPos++;
+		}
+		
+		return newStringy;
+	}
+
+}

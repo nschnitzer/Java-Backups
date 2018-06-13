@@ -1,0 +1,268 @@
+//**********************************************************
+// Nathan Schnitzer
+// LinkedList1.java
+// 9/12/17
+// This will represent a linked list
+//**********************************************************
+
+import java.util.*;
+
+public class LinkedList1<Type extends Comparable> 
+{
+	private ListNode<Type> first;
+	private ListNode<Type> current;
+	
+	//Constructs a LinkedList1 object
+	public LinkedList1()
+	{
+		
+	}
+	
+	//Add a node to the list
+	public void add(Type obj)
+	{
+		ListNode<Type> newNode = new ListNode<Type>(obj, null);
+		if (first == null)
+			first = newNode;
+		else
+		{
+			current = first;
+			while (current.getNext() != null)
+				current = current.getNext();
+			current.setNext(newNode);
+		}
+	}
+	
+	//Add a node to be the first
+	public void addFirst(Type obj)
+	{
+		ListNode<Type> newNode = new ListNode<Type>(obj, null);
+		current = first;
+		newNode.setNext(current);
+		first = newNode;
+		
+	}
+	
+	//Deletes the object specified
+	public boolean remove(Type e)
+	{
+		current = first;
+		if ((current.getValue().compareTo(e) == 0))
+		{
+			delPosition(0);
+			return true;
+		}
+		
+		ListNode<Type> before = current;
+		current = current.getNext();
+		ListNode<Type> after = current.getNext();
+		
+		for (int i = 0; i < getLength()-1; i++)
+		{
+			if ((current.getValue().compareTo(e) == 0))
+			{
+				delPosition(i);
+				return true;
+			}
+			before = current;
+			current = current.getNext();
+			after = current.getNext();
+		}
+		return false;
+	}
+	
+	//Remove the first node
+	public void delFirst()
+	{
+		current = first;
+		first = current.getNext();
+	}
+	
+	//Insert a node into any position
+	public void insertPos(Type obj, int position)
+	{
+		ListNode<Type> newNode = new ListNode<Type>(obj, null);
+		ListNode<Type> afterNode;
+		current = first;
+		
+		int i = 1;
+		while (i < position)
+		{
+			current = current.getNext();
+			i++;
+		}
+		
+		afterNode = current.getNext();
+		current.setNext(newNode);
+		current = current.getNext();
+		current.setNext(afterNode);
+	}
+	
+	//Deletes a node from a specific position
+	public void delPosition(int position)
+	{
+		ListNode<Type> before;
+		ListNode<Type> after;
+		current = first;
+		int i = 1;
+		while (i < position )
+		{
+			current = current.getNext();
+			i++;
+		}
+		before = current;
+		current = current.getNext();
+		after = current.getNext();
+		
+		before.setNext(after);
+	}
+	
+	//Returns the object in the x list node with an offset of 0
+	public Type get(int index)
+	{
+		current = first;
+		for (int i = 0; i < index; i++)
+			current = current.getNext();
+		
+		return current.getValue();
+	}
+	
+	int length = 1;
+	
+	//Returns the length of the list
+	public int getLength()
+	{
+		length = 1;
+		
+		current = first;
+		while (current.getNext() != null)
+		{
+			length = length + 1;
+			current = current.getNext();
+		}
+		return length;
+	}
+	
+	//Print out the list
+	public void printList()
+	{
+		System.out.println("Printing...");
+		System.out.println();
+		
+		current = first;
+		System.out.println(current.getValue());
+		while (current.getNext() != null)
+		{
+			current = current.getNext();
+			System.out.println(current.getValue());
+			
+		}
+		System.out.println();
+		System.out.println("Done");
+	}
+	
+	//Prints out the reversed linked list with recursion
+	public void printBackwards()
+	{
+		printBackwardsHelper(first);
+	}
+	
+	private
+	void printBackwardsHelper(ListNode cur)
+	{
+		if (cur.getNext() != null)
+		{
+			printBackwardsHelper(cur.getNext());
+			
+		}
+		System.out.println(cur.getValue());
+	}
+	
+	//Prints out the reversed linked list without recursion
+	public void printReverseIteration() //This takes way way too long
+	{
+		System.out.println("Reversing...");
+		System.out.println();
+		
+		//Call the getLength method
+		int onNode = getLength();
+		
+		//Ensure the last node has a next value of null
+		getLast().setNext(null);
+		
+		//Reset current to first
+		current = first;
+		
+		while (onNode > 1)
+		{
+			current = first;
+			int k = 1;
+			while(k < onNode && current.getNext() != null)
+			{
+				current = current.getNext();
+				k++;
+			}
+			
+			onNode--;
+			System.out.println(current.getValue());
+		}
+		
+		System.out.println(first.getValue());
+		System.out.println("Done.");
+	}
+	
+	public void reverseList()
+	{
+		ListNode<Type> other = first;
+		current = first;
+		int j = getLength()-1;
+		for (int i = 0; i < getLength()/2; i++)
+		{
+			int k = 1;
+			while (k < j && other.getNext() != null)
+			{
+				other = other.getNext();
+				k++;
+			}
+			Type temp = other.getValue();
+			j--;
+			
+			other.setValue(current.getValue());;
+			current.setValue(temp);;
+		}
+	}
+	
+	public ListNode<Type> getLast()
+	{
+		current = first;
+		for (int i = 0; i < getLength(); i++)
+		{
+			current = current.getNext();
+		}
+		
+		return current;
+	}
+	
+	//Returns a String with the value of LinkedList1
+	public String toString()
+	{
+		String result = "";
+		
+		result += "Printing... " + "\n" + "\n";
+		
+		//Add first node to result
+		current = first;
+		result = result + current.getValue() + "\n";
+		
+		//Add the rest of nodes to result
+		while (current.getNext() != null)
+		{
+			current = current.getNext();
+			result = result + current.getValue() + "\n";
+		}
+		result = result + "\n" + "Done.";
+		
+		return result;
+	}
+
+}

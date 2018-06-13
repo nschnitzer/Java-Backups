@@ -1,0 +1,17 @@
+
+public class Birthday {
+
+	public static void main(String[] args) {
+		double pA = 1.0;
+		for (int i = 364; i >= 0; i--)
+		{
+			pA = pA * (i/365);
+		}
+		
+		pA = 1 - pA;
+		
+		System.out.println(pA);
+
+	}
+
+}

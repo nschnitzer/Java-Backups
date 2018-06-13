@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;ArrListDriver&apos; to &apos;myArrayList_2Driver&apos;&#x0D;&#x0A;- Original project: &apos;MyArrayList&apos;&#x0D;&#x0A;- Original element: &apos;ArrListDriver&apos;&#x0D;&#x0A;- Renamed element: &apos;myArrayList_2Driver&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Rename similarly named elements&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ArrListDriver&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{ArrListDriver.java[ArrListDriver" matchStrategy="1" name="myArrayList_2Driver" qualified="false" references="true" similarDeclarations="true" stamp="1511366543879" textual="false" version="1.0"/>
+</session>

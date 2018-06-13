@@ -1,0 +1,36 @@
+//*************************************************
+// Nathan Schnitzer
+// Enclosure.java ACSL Contest #2
+// 1/17/18
+//*************************************************
+
+import java.util.*;
+import java.io.*;
+
+public class Enclosure 
+{
+
+	public static void main(String[] args) 
+	{
+		Scanner scan = new Scanner("src/Inputs.txt");
+		
+		//while (scan.hasNextLine())
+		{
+			String input = scan.nextLine();
+			Stack<Symbol> stk = new Stack<Symbol>();
+			
+			//Put all items into the stack
+			for (int i= 0; i < input.length(); i++)
+			{
+				stk.push(new Symbol(0, input.charAt(i)));
+			}
+			
+			while (!stk.isEmpty())
+			{
+				System.out.println(stk.pop().toString());
+			}
+		}
+
+	}
+
+}

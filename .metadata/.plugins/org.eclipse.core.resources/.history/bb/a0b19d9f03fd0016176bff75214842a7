@@ -1,0 +1,24 @@
+//*****************************************************
+// Nathan Schnitzer
+// Pig.java 4.5
+// 2/7/17
+// This program will be able to play Pig with the given requirements
+//*****************************************************
+
+package Prog4_5;
+
+public class Pig {
+
+	public static void main(String[] args) {
+		PairOfDice player = new PairOfDice();
+		PairOfDice computer = new PairOfDice();
+		
+		String result;
+		
+		
+		
+		System.out.println(result);
+
+	}
+
+}

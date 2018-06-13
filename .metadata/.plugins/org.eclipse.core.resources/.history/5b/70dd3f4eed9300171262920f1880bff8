@@ -1,0 +1,21 @@
+//**********************************************
+// Nathan Schnitzer
+// RecSumFactorial.java
+// 9/7/17
+// This will demonstate recursion by emulating a factorial and adding the first n integers
+//**********************************************
+
+public class RecSumFactorial 
+{
+
+	public static void main(String[] args) 
+	{
+		//Add first 5 positive integers
+		System.out.println(Add.sum(5));
+		
+		//Calculate 5!
+		System.out.println(Multiply.factorial(33));
+
+	}
+
+}

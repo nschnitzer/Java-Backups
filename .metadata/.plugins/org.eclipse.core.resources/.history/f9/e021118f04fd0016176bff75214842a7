@@ -1,0 +1,60 @@
+//*****************************************************
+// Nathan Schnitzer
+// Pig.java 4.5
+// 2/7/17
+// This program will be able to play Pig with the given requirements
+//*****************************************************
+
+package Prog4_5;
+import java.util.Scanner;
+
+public class Pig {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		PairOfDice player = new PairOfDice();
+		PairOfDice computer = new PairOfDice();
+		String response;
+		String response2 = "y";
+		
+		String result;
+		if (player.getTurn())
+			System.out.println("y");
+		
+		System.out.println("Would you like to roll? Last Round Score: " + player.getRoundScore() + " Total Score: " + player.getTotalScore());
+		response = scan.nextLine();
+		
+		while (!(player.pigCompare(computer)))
+		{
+			while (player.getTurn() && response2.equalsIgnoreCase("y"))
+			{
+				player.pigGame();
+				if (player.getTurn())
+				{
+					System.out.println("Roll again? Round Score: " + player.getRoundScore());
+					response2 = scan.nextLine();
+				}
+				else
+				{
+					System.out.println("Round Over");
+					response2 = "n";
+				}
+				
+				computer.pigGame();
+				while (computer.getTurn() && computer.getRoundScore() < 15)
+				{
+					computer.pigGame();
+				}
+				
+				System.out.println("Your round score: " + player.getRoundScore());
+				System.out.println("Your total score: " + player.getTotalScore());
+				System.out.println("Computer round score: " + computer.getRoundScore());
+				System.out.println("Computer total score: " + computer.getTotalScore());
+			}
+			
+			
+		}
+
+	}
+
+}
